@@ -100,6 +100,9 @@ compile commands for them.
 If no command is available for a header, but a file has been opened that
 transitively includes it, then that file's command will be used. To enable this
 [TUScheduler] keeps a `HeaderIncluderCache` to look up the relevant file.
+[This issue](https://github.com/clangd/clangd/issues/123) tracks a further
+improvement to use inclusion relationships to determine the header command
+even if the including file hasn't been opened.
 
 Otherwise when `compile_commands.json` is used, we'll pick some entry whose
 filename most closely matches that of the header. The idea is that `bar/foo.cc`

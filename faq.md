@@ -124,3 +124,16 @@ where `<path>` is the directory containing the compilation database.
 
 In older versions of clangd, this can be accomplished by passing the same
 path as a `--compile-commands-dir=<path>` command-line argument to clangd.
+
+## What can I do if clangd chooses the wrong source file to infer commands for a header?
+
+Clangd currently uses
+[heuristics](https://clangd.llvm.org/design/compile-commands#commands-for-header-files)
+to choose a source file whose compile command to use when opening a header file.
+
+Sometimes these heuristics choose the wrong file. While 
+[improvements](https://github.com/clangd/clangd/issues/123) to the heuristics
+are planned, a workaround in the meantime is to use a tool like
+[CompDB](https://github.com/Sarcasm/compdb#generate-a-compilation-database-with-header-files)
+to post-process the `compile_commands.json` file to also contain entries for
+headers.
